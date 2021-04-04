@@ -25,7 +25,7 @@ func TestFindAll(t *testing.T) {
 func TestFindByID(t *testing.T) {
 	bookRepository := repositories.NewBookRepository(db.GetConnection())
 
-	book, err := bookRepository.FindByID(context.Background(), 4)
+	book, err := bookRepository.FindByID(context.Background(), 1)
 	if err != nil {
 		panic(err)
 	}

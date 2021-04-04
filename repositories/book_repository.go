@@ -3,9 +3,7 @@ package repositories
 import (
 	"context"
 	"database/sql"
-	"errors"
 	"library-system/entities"
-	"strconv"
 	"time"
 )
 
@@ -54,11 +52,11 @@ func (r *repository) FindByID(ctx context.Context, ID int) (entities.Book, error
 
 	defer rows.Close()
 
-	if !rows.Next() {
-		return book, errors.New("ID " + strconv.Itoa(int(ID)) + " Not Found")
+	if rows.Next() {
+		rows.Scan(&book.ID, &book.Name, &book.IsRented, &book.CreatedAt, &book.UpdatedAt)
+		return book, nil
 	}
 
-	rows.Scan(&book.ID, &book.Name, &book.IsRented, &book.CreatedAt, &book.UpdatedAt)
 	return book, nil
 }
 
