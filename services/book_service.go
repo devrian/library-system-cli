@@ -57,7 +57,7 @@ func (s *service) CreateBook(ID int, name string, isRented bool) (entities.Book,
 		return book, err
 	}
 	if checkBookId.ID != 0 {
-		return book, errors.New("Book ID has been registered " + strconv.Itoa(checkBookId.ID))
+		return book, errors.New("code of book has been registered " + strconv.Itoa(checkBookId.ID))
 	}
 
 	bookCreated, err := s.repository.Insert(context.Background(), book)
